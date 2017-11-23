@@ -1,0 +1,22 @@
+machine:
+  python:
+    version: 3.6.2
+
+dependencies:
+  override:
+    - make dependencies
+    - pyenv local 3.6.2 3.5.3 3.4.4 3.3.6
+
+test:
+  override:
+    - make validate
+    - make test
+
+deployment:
+  production:
+    branch: master
+    owner: CloverHealth
+    commands:
+      - pip3 install -r deploy_requirements.txt
+      - python3 deploy.py prod
+

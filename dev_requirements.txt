@@ -1,0 +1,13 @@
+# Requirements for doing development
+
+pip
+setuptools
+
+# For Sphinx documentation
+Sphinx==1.6.5
+sphinx-rtd-theme==0.2.4
+
+# For testing. Do *not* put these into test_requirements.txt since we don't want
+# to install tox in the environment created by tox. It won't get used.
+tox==2.9.1
+tox-pyenv==1.1.0

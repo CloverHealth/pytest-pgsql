@@ -1,0 +1,8 @@
+# Pylint rules for pgtestutil
+
+[MESSAGES CONTROL]
+disable=locally-disabled, no-member, missing-docstring, invalid-name, protected-access, unused-argument, redefined-outer-name, too-few-public-methods, too-many-arguments
+
+[REPORTS]
+reports=no
+
