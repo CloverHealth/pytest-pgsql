@@ -2,7 +2,7 @@ Clean PostgreSQL Databases for Your Tests
 =========================================
 
 The following is a summary of the complete pytest_pgsql docs, which are available
-on `ReadTheDocs <http://pytehttp://pytest-pgsql.readthedocs.io/>`_.
+on `ReadTheDocs <http://pytest-pgsql.readthedocs.io/>`_.
 
 What is ``pytest_pgsql``?
 ------------------------------
