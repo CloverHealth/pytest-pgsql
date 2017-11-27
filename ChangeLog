@@ -1,2 +1,9 @@
-ChangeLog
+CHANGES
 =======
+
+1.0.1
+-----
+
+* Fixed README docs link
+* sem-ver: api-break, Initial release
+* Initial commit
