@@ -34,9 +34,10 @@ def _pypi_push(dist):
     for filename in os.listdir(dist):
         full_path = os.path.join(dist, filename)
         if os.path.isfile(full_path):
-            _shell('twine register ' + shlex.quote(full_path))
+            # This will fail if the project has never been uploaded, so use check=false
+            _shell('twine register ' + shlex.quote(full_path), check=False)
 
-    _shell('twine upload ' + shlex.quote(dist))
+    _shell('twine upload ' + shlex.quote(dist + '/*'))
 
 
 def deploy(target):
