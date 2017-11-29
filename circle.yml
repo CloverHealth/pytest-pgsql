@@ -5,7 +5,7 @@ machine:
 dependencies:
   override:
     - make dependencies
-    - pyenv local 3.6.2 3.5.3 3.4.4 3.3.6
+    - pyenv local 3.6.2 3.5.3 3.4.4
 
 test:
   override:
