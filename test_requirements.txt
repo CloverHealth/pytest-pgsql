@@ -1,11 +1,12 @@
-# Requirements needed for running the test suite. Don't include pytest here
-# because it's already in requirements.txt. Similarly, don't include tox and
+# Requirements needed for running the test suite. Don't include tox and
 # tox-pyenv here because they're in dev_requirements.txt.
 
 coverage==4.4.2
 flake8==3.5.0
 psycopg2==2.7.3
 pylint==1.7.4
+# Pytest needs to be listed again here because pytest-mock will
+# pull in the latest version when installing test reqs
 pytest>=3.0.0; python_version>="3.4"
 pytest>=3.0,<3.3; python_version<"3.4"
 pytest-mock==1.6.3
