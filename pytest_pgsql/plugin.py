@@ -1,7 +1,6 @@
 """This forms the core of the pytest plugin."""
 
 import sys
-import urllib.parse
 
 import pytest
 import testing.postgresql
