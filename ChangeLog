@@ -1,9 +1,10 @@
 CHANGES
 =======
 
-1.0.1
+1.0.2
 -----
 
+* Fix Github link in package metadata and remove custom URL creation based on driver
 * Fixed README docs link
 * sem-ver: api-break, Initial release
 * Initial commit
