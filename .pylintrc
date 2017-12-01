@@ -1,4 +1,4 @@
-# Pylint rules for pgtestutil
+# Pylint rules for pytest-pgsql
 
 [MESSAGES CONTROL]
 disable=locally-disabled, no-member, missing-docstring, invalid-name, protected-access, unused-argument, redefined-outer-name, too-few-public-methods, too-many-arguments

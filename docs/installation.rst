@@ -10,11 +10,9 @@ System Requirements
   `here <http://docs.sqlalchemy.org/en/latest/dialects/postgresql.html#dialect-postgresql>`_).
   `psycopg2 <http://initd.org/psycopg/>`_ is guaranteed to work;
   `pg8000 <https://github.com/mfenniak/pg8000/>`_ on the other hand is known to
-  be incompatible with pgtestutil.
+  be incompatible with pytest-pgsql.
 
 Setup
 -----
 
-Ensure that you have gone through the `Gemfury setup instructions <https://github.com/CloverHealth/documentation/blob/master/docs/dev_environment_getting_started.md#set-up-gemfury>`_. Then do::
-
-    pip3 install pgtestutil
+pip3 install pytest-pgsql

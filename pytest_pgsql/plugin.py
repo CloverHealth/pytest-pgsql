@@ -1,7 +1,6 @@
 """This forms the core of the pytest plugin."""
 
 import sys
-import urllib.parse
 
 import pytest
 import testing.postgresql
@@ -79,12 +78,7 @@ def database_uri(request):
             # SQLAlchemy when the driver isn't found.
             raise ImportError("Can't find the database driver %r." % driver)
 
-        # Break the connection URL into its parts, replace the protocol part
-        # ("postgresql") to define the driver (e.g. "postgresql+pygresql") and
-        # return that to the user.
-        url_parts = list(urllib.parse.urlparse(pgdb.url()))
-        url_parts[0] = 'postgresql+' + driver
-        yield urllib.parse.urlunparse(url_parts)
+        yield pgdb.url()
 
 
 #: A SQLAlchemy engine shared by the transacted and non-transacted database fixtures.
