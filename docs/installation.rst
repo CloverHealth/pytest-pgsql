@@ -11,10 +11,11 @@ System Requirements
 .. note::
 
     Due to the way that ``tox`` works with environment setup, if your system's
-    Python 3 version is 3.6.x and you install `pgcli <https://www.pgcli.com/>`_,
-    ``make setup`` will fail. This is due to a `known bug <https://github.com/OCA/pylint-odoo/issues/144>`_
-    in ``pbr`` and as of 2017-12-01 there is no workaround that doesn't break
-    ``pgcli``. You'll need to uninstall it.
+    Python 3 version is 3.6.x and you installed any Python package that uses
+    ``cli-helpers`` version 0.2.0 or greater, ``make setup`` will fail. This is
+    due to a `known bug <https://github.com/OCA/pylint-odoo/issues/144>`_ in
+    ``pbr`` and as of 2017-12-02 there is no workaround that won't potentially
+    break other packages.
 
 Setup
 -----
