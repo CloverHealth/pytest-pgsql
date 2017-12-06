@@ -1,10 +1,19 @@
 CHANGES
 =======
 
+1.0.3
+-----
+
+* Fixed issue when running "make setup"
+
 1.0.2
 -----
 
 * Fix Github link in package metadata and remove custom URL creation based on driver
+
+1.0.1
+-----
+
 * Fixed README docs link
 * sem-ver: api-break, Initial release
 * Initial commit
