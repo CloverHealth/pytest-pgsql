@@ -6,13 +6,20 @@ System Requirements
 
 * PostgreSQL 9.1 or greater must be installed.
 * Python 3.3 or greater. Compatibility with PyPy3.5 is untested and not guaranteed.
-* A database driver supported by SQLAlchemy must also be installed (see full list
-  `here <http://docs.sqlalchemy.org/en/latest/dialects/postgresql.html#dialect-postgresql>`_).
-  `psycopg2 <http://initd.org/psycopg/>`_ is guaranteed to work;
-  `pg8000 <https://github.com/mfenniak/pg8000/>`_ on the other hand is known to
-  be incompatible with pytest-pgsql.
+* You must use ``psycopg2`` as your database driver.
+
+.. note::
+
+    Due to the way that ``tox`` works with environment setup, if your system's
+    Python 3 version is 3.6.x and you installed any Python package that uses
+    ``cli-helpers`` version 0.2.0 or greater, ``make setup`` will fail. This is
+    due to a `known bug <https://github.com/OCA/pylint-odoo/issues/144>`_ in
+    ``pbr`` and as of 2017-12-02 there is no workaround that won't potentially
+    break other packages.
 
 Setup
 -----
 
-pip3 install pytest-pgsql
+.. code-block:: sh
+
+    pip3 install pytest-pgsql
