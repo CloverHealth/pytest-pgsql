@@ -8,16 +8,6 @@ import testing.postgresql
 from pytest_pgsql import database
 from pytest_pgsql import ext
 
-if sys.version_info < (3, 4):
-    # Python <= 3.3 doesn't have importlib.util.find_spec so we need to use the
-    # find_module() function. It was deprecated in 3.4 and shouldn't be used in
-    # later versions.
-    from importlib import find_loader as find_module
-else:
-    # 3.4+ uses a different function to find packages. Once we drop support for
-    # 3.3 then we must use this function exclusively.
-    from importlib.util import find_spec as find_module
-
 
 def pytest_addoption(parser):
     """Add configuration options for pytest_pgsql."""
@@ -32,14 +22,6 @@ def pytest_addoption(parser):
         help='Set the value of the `work_mem` setting, in megabytes. '
              '`pytest_pgsql` defaults to 32. Adjusting this up or down can '
              'help performance; see the Postgres documentation for more details.')
-
-    parser.addoption(
-        '--pg-driver', default='psycopg2',
-        help="The name of your database driver. If psycopg2 isn't your driver "
-             "(e.g. you use pygresql) then you need to pass this argument "
-             "providing the name of your driver package so that SQLAlchemy can "
-             "use the right one. If not given, pytest_pgsql will fall back "
-             "to psycopg2 if possible. pg8000 is explicitly NOT supported.")
 
 
 @pytest.fixture(scope='session')
@@ -68,16 +50,6 @@ def database_uri(request):
                       + work_mem_setting +
                       '-c checkpoint_timeout=30min '
                       '-c bgwriter_delay=10000ms') as pgdb:
-        driver = request.config.getoption('--pg-driver')
-        if driver == 'pg8000':  # pragma: no cover
-            raise ValueError(
-                "pg8000 is currently unsupported because of how it executes "
-                "prepared statements. Please use psycopg2 or a similar driver.")
-        elif find_module(driver) is None:  # pragma: no cover
-            # Throw an error here to avoid really cryptic error messages from
-            # SQLAlchemy when the driver isn't found.
-            raise ImportError("Can't find the database driver %r." % driver)
-
         yield pgdb.url()
 
 
