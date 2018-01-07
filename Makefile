@@ -30,7 +30,6 @@ PIP_INSTALL_CMD=pip install -q
 PIP_LOCAL_INSTALL_CMD=pip install -q .
 else
 TOX_POSARGS=
-PYTHON_VERSION=3.6.2
 PIP_INSTALL_CMD=pip install
 PIP_LOCAL_INSTALL_CMD=pip install -e .
 endif
@@ -57,22 +56,25 @@ ifeq (${OS}, Darwin)
 # Ensure we remain up to date with pyenv so that new python versions are available for installation
 	brew upgrade pyenv pyenv-virtualenv 2> /dev/null || true
 endif
-ifdef PYTHON_VERSION
-	pyenv install -s ${PYTHON_VERSION}
-endif
-# Only make the virtualenv if it doesnt exist
-	@[ ! -e ~/.pyenv/versions/${PACKAGE_NAME} ] && pyenv virtualenv ${PYTHON_VERSION} ${PACKAGE_NAME} || :
-	pyenv local ${PACKAGE_NAME}
-ifdef PYTHON_VERSION
-# If Python has been upgraded, remove the virtualenv and recreate it
-	@[ `python --version | cut -f2 -d' '` != ${PYTHON_VERSION} ] && echo "Python has been upgraded since last setup. Recreating virtualenv" && pyenv uninstall -f ${PACKAGE_NAME} && pyenv virtualenv ${PYTHON_VERSION} ${PACKAGE_NAME} || :
-endif
+
+	# Install all supported Python versions. There are more recent patch releases
+	# for most of these but CircleCI doesn't have them preinstalled. Installing a
+	# version of Python that isn't preinstalled slows down the build significantly.
+	#
+	# If you don't have these installed yet it's going to take a long time, but
+	# you'll only need to do it once.
+	pyenv install -s 3.6.2
+	pyenv install -s 3.5.2
+	pyenv install -s 3.4.4
+	pyenv install -s 3.3.6
+
+	# Set up the environments for Tox
+	pyenv local 3.6.2 3.5.2 3.4.4 3.3.6
 
 
 # Deactivates pyenv and removes it from auto-using the virtualenv
 .PHONY: deactivate_pyenv
 deactivate_pyenv:
-	pyenv uninstall ${PACKAGE_NAME}
 	rm .python-version
 
 
