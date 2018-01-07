@@ -1,7 +1,5 @@
 """This forms the core of the pytest plugin."""
 
-import sys
-
 import pytest
 import testing.postgresql
 
