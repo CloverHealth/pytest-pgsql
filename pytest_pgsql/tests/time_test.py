@@ -2,10 +2,10 @@
 
 import datetime
 
-import pytest_pgsql
 import pytest
 import sqlalchemy.orm as sqla_orm
 
+import pytest_pgsql
 
 _PGFREEZE_DATETIME_TZ = datetime.datetime(2099, 12, 31, 23, 59, 59, 123000,
                                           datetime.timezone.utc)

@@ -632,10 +632,8 @@ class PostgreSQLTestDBBase(metaclass=abc.ABCMeta):
             else:
                 quoted_table = quote(schema_name)
 
-            cascade_clause = 'CASCADE' if cascade else ''
-
             self._conn.execute('TRUNCATE TABLE ONLY %s RESTART IDENTITY %s'
-                               % (quoted_table, cascade_clause))
+                               % (quoted_table, 'CASCADE' if cascade else ''))
 
         if isinstance(csv_source, str):
             with open(csv_source, 'r') as fdesc:

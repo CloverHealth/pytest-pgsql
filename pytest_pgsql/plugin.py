@@ -30,8 +30,8 @@ def database_uri(request):
 
     work_mem = request.config.getoption('--pg-work-mem')
     if work_mem < 0:    # pragma: no cover
-        return pytest.exit('ERROR: --pg-work-mem value must be >= 0. Got: %d'
-                           % work_mem)
+        pytest.exit('ERROR: --pg-work-mem value must be >= 0. Got: %d' % work_mem)
+        return
     elif work_mem == 0:  # pragma: no cover
         # Disable memory tweak and use the server default.
         work_mem_setting = ''
