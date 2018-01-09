@@ -6,9 +6,6 @@ import io
 import random
 import tempfile
 
-import pytest_pgsql.time
-from pytest_pgsql import errors
-
 import pytest
 import sqlalchemy as sqla
 import sqlalchemy.engine as sqla_eng
@@ -16,6 +13,9 @@ import sqlalchemy.exc as sqla_exc
 import sqlalchemy.ext.declarative as sqla_decl
 from sqlalchemy import func as sqla_func
 import sqlalchemy.sql as sqla_sql
+
+import pytest_pgsql.time
+from pytest_pgsql import errors
 
 DeclBase = sqla_decl.declarative_base()
 
