@@ -7,6 +7,11 @@
 pytest>=3.0.0; python_version>="3.4"
 pytest>=3.0,<3.3; python_version<"3.4"
 
+# isort is an indirect requirement of pylint. isort 4.3 dropped support
+# for Python 3.3, so we need to peg it to an earlier version to avoid
+# breakages.
+isort==4.2.15; python_version<"3.4"
+
 coverage==4.4.2
 flake8==3.5.0
 psycopg2==2.7.3
