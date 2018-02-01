@@ -134,6 +134,9 @@ pass SQLAlchemy ``Table`` instances or ORM declarative model classes::
 Installation
 ============
 
+Sorry, this library is not compatible with Python 2. Please be sure to use ``pip3`` instead of
+``pip`` when installing::
+
     pip3 install pytest-pgsql
 
 
