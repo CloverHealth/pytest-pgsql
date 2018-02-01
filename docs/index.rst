@@ -315,20 +315,6 @@ Now, in our tests we can use the fixtures directly::
 Command Line Options
 --------------------
 
-``--pg-driver``
-~~~~~~~~~~~~~~~
-
-Use this to tell the fixtures which database driver to use. The default if not
-given is `psycopg2 <http://initd.org/psycopg/>`_. SQLAlchemy supports all the
-drivers listed `here <http://docs.sqlalchemy.org/en/latest/dialects/postgresql.html#dialect-postgresql>`_
-but some may not work with ``pytest_pgsql``. [#]_
-
-Usage:
-
-.. code-block:: sh
-
-    pytest --pg-driver pygresql
-
 ``--pg-extensions``
 ~~~~~~~~~~~~~~~~~~~
 
