@@ -1,6 +1,11 @@
 CHANGES
 =======
 
+1.0.4
+-----
+
+* [BUG] Remove silently ignored --pg-driver CLI option. (#3)
+
 1.0.3
 -----
 
