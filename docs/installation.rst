@@ -5,7 +5,7 @@ System Requirements
 -------------------
 
 * PostgreSQL 9.1 or greater must be installed.
-* Python 3.3 or greater. Compatibility with PyPy3.5 is untested and not guaranteed.
+* Python 3.4 or greater. Compatibility with PyPy3.5 is untested and not guaranteed.
 * You must use ``psycopg2`` as your database driver.
 
 .. note::
