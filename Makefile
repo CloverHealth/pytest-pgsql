@@ -66,10 +66,9 @@ endif
 	pyenv install -s 3.6.2
 	pyenv install -s 3.5.2
 	pyenv install -s 3.4.4
-	pyenv install -s 3.3.6
 
 	# Set up the environments for Tox
-	pyenv local 3.6.2 3.5.2 3.4.4 3.3.6
+	pyenv local 3.6.2 3.5.2 3.4.4
 
 
 # Deactivates pyenv and removes it from auto-using the virtualenv
