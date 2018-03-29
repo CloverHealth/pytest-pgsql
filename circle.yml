@@ -9,6 +9,8 @@ dependencies:
 
 test:
   override:
+    # Ensure package is always up to date with latest template
+    - temple update --check
     - make validate
     - make test
 
