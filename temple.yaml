@@ -1,0 +1,9 @@
+_extensions: [jinja2_time.TimeExtension]
+_template: git@github.com:CloverHealth/temple-python-public.git
+_version: adc85355497ab10936879eedeeec27e1307a5079
+deploy_branch: master
+module_name: pytest_pgsql
+repo_name: pytest-pgsql
+short_description: Clean PostgreSQL Databases for Your Tests
+support_email: oss@cloverhealth.com
+year: '2018'

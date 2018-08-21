@@ -21,7 +21,7 @@ PACKAGE_NAME=pytest_pgsql
 MODULE_NAME=pytest_pgsql
 
 ifdef CIRCLECI
-TOX_POSARGS=-- --junitxml={env:CIRCLE_TEST_REPORTS}/pytest_pgsql/junit.xml
+TEST_COMMAND=pytest --junitxml=$(TEST_REPORTS)/junit.xml
 # Use CircleCIs version
 PYTHON_VERSION=
 # Dont log pip install output since it can print the private repo url
@@ -29,7 +29,8 @@ PIP_INSTALL_CMD=pip install -q
 # Do local installs without editable mode because of issues with CircleCI's venv
 PIP_LOCAL_INSTALL_CMD=pip install -q .
 else
-TOX_POSARGS=
+TEST_COMMAND=pytest
+DEV_PYTHON_VERSION=3.6.2
 PIP_INSTALL_CMD=pip install
 PIP_LOCAL_INSTALL_CMD=pip install -e .
 endif
@@ -132,7 +133,7 @@ validate:
 # Run tests
 .PHONY: test
 test:
-	tox ${TOX_POSARGS}
+	coverage run -m ${TEST_COMMAND}
 	coverage report
 
 

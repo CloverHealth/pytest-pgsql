@@ -1,5 +1,5 @@
 
-# Created by https://www.gitignore.io/api/python,sublimetext,vim,emacs,git,pycharm,macos
+# Created by https://www.gitignore.io/api/python,sublimetext,vim,emacs,git,pycharm,macos,visualstudiocode
 
 ### Emacs ###
 # -*- mode: gitignore; -*-
@@ -44,9 +44,28 @@ flycheck_*.el
 
 # projectiles files
 .projectile
+projectile-bookmarks.eld
 
 # directory configuration
 .dir-locals.el
+
+# saveplace
+places
+
+# url cache
+url/cache/
+
+# cedet
+ede-projects.el
+
+# smex
+smex-items
+
+# company-statistics
+company-statistics-cache.el
+
+# anaconda-mode
+anaconda-mode/
 
 ### Git ###
 *.orig
@@ -58,7 +77,6 @@ flycheck_*.el
 
 # Icon must end with two \r
 Icon
-
 
 # Thumbnails
 ._*
@@ -86,6 +104,7 @@ Temporary Items
 # User-specific stuff:
 .idea/**/workspace.xml
 .idea/**/tasks.xml
+.idea/dictionaries
 
 # Sensitive or high-churn files:
 .idea/**/dataSources/
@@ -99,6 +118,9 @@ Temporary Items
 # Gradle:
 .idea/**/gradle.xml
 .idea/**/libraries
+
+# CMake
+cmake-build-debug/
 
 # Mongo Explorer plugin:
 .idea/**/mongoSettings.xml
@@ -117,6 +139,12 @@ Temporary Items
 # JIRA plugin
 atlassian-ide-plugin.xml
 
+# Cursive Clojure plugin
+.idea/replstate.xml
+
+# Ruby plugin and RubyMine
+/.rakeTasks
+
 # Crashlytics plugin (for Android Studio and IntelliJ)
 com_crashlytics_export_strings.xml
 crashlytics.properties
@@ -131,6 +159,9 @@ fabric.properties
 # .idea/misc.xml
 # *.ipr
 
+# Sonarlint plugin
+.idea/sonarlint
+
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -142,7 +173,6 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-env/
 build/
 develop-eggs/
 downloads/
@@ -174,18 +204,15 @@ htmlcov/
 .coverage
 .coverage.*
 .cache
+.pytest_cache/
 nosetests.xml
 coverage.xml
-*,cover
+*.cover
 .hypothesis/
 
 # Translations
 *.mo
 *.pot
-
-# Django stuff:
-*.log
-local_settings.py
 
 # Flask stuff:
 instance/
@@ -207,21 +234,32 @@ target/
 .python-version
 
 # celery beat schedule file
-celerybeat-schedule
+celerybeat-schedule.*
 
-# dotenv
+# SageMath parsed files
+*.sage.py
+
+# Environments
 .env
-
-# virtualenv
 .venv
+env/
 venv/
 ENV/
+env.bak/
+venv.bak/
 
 # Spyder project settings
 .spyderproject
+.spyproject
 
 # Rope project settings
 .ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
 
 ### SublimeText ###
 # cache files for sublime text
@@ -257,10 +295,8 @@ GitHub.sublime-settings
 
 ### Vim ###
 # swap
-[._]*.s[a-v][a-z]
-[._]*.sw[a-p]
-[._]s[a-v][a-z]
-[._]sw[a-p]
+.sw[a-p]
+.*.sw[a-p]
 # session
 Session.vim
 # temporary
@@ -268,4 +304,13 @@ Session.vim
 # auto-generated tag files
 tags
 
-# End of https://www.gitignore.io/api/python,sublimetext,vim,emacs,git,pycharm,macos
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history
+
+
+# End of https://www.gitignore.io/api/python,sublimetext,vim,emacs,git,pycharm,macos,visualstudiocode

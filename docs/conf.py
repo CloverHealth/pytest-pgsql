@@ -56,9 +56,9 @@ master_doc = 'toc'
 default_role = 'any'
 
 # General information about the project.
-project = u'pytest_pgsql'
-copyright = u'2017, Clover Health'
-author = u'Clover Health'
+project = 'pytest-pgsql'
+copyright = '2018, Clover Health'
+author = 'Clover Health'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the

@@ -2,6 +2,7 @@
 
 pip
 setuptools
+temple
 
 # For Sphinx documentation
 Sphinx==1.6.5
