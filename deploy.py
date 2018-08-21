@@ -88,7 +88,7 @@ def deploy(target):
     os.environ['TWINE_PASSWORD'] = pypi_password
 
     # Set up git on circle to push to the current branch
-    _shell('git config --global user.email "dev@cloverhealth.com"')
+    _shell('git config --global user.email "oss@cloverhealth.com"')
     _shell('git config --global user.name "Circle CI"')
     _shell('git config push.default current')
 

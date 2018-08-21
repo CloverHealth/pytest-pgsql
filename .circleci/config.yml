@@ -1,0 +1,84 @@
+version: 2
+aliases:
+  - &docker_image circleci/python:3.6-stretch
+  - &dependencies
+    name: Make virtualenv and install dependencies
+    command: |
+      python3 -m venv ~/venv
+      echo ". ~/venv/bin/activate" >> $BASH_ENV
+      source $BASH_ENV
+      make dependencies
+  - &test_boilerplate
+    environment:
+      TEST_REPORTS: /tmp/test-reports
+    steps:
+      - checkout
+      - run:
+          <<: *dependencies
+      - run: make test
+      - store_test_results:
+           path: /tmp/test-reports
+      - store_artifacts:
+           path: /tmp/test-reports
+jobs:
+  temple_check:
+    docker:
+      - image: *docker_image
+    steps:
+      - checkout
+      - run:
+          <<: *dependencies
+      - run: temple update --check
+  lint:
+    docker:
+      - image: *docker_image
+    steps:
+      - checkout
+      - run:
+          <<: *dependencies
+      - run: make validate
+  test_py35:
+    docker:
+      - image: circleci/python:3.5-stretch
+    <<: *test_boilerplate
+  test_py36:
+    docker:
+      - image: circleci/python:3.6-stretch
+    <<: *test_boilerplate
+  test_py37:
+    docker:
+      - image: circleci/python:3.7-stretch
+    <<: *test_boilerplate
+  deploy:
+    docker:
+      - image: *docker_image
+    steps:
+      - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - "af:a6:bf:48:f0:08:d6:0f:19:4f:fd:10:f2:9d:50:2c"
+      - run:
+          <<: *dependencies
+      - run: pip install -q -r deploy_requirements.txt
+      - run: python3 deploy.py prod
+
+workflows:
+  version: 2
+  checks_and_deploy:
+    jobs:
+      - temple_check
+      - lint
+      - test_py35
+      - test_py36
+      - test_py37
+      - deploy:
+          requires:
+            - temple_check
+            - lint
+            - test_py35
+            - test_py36
+            - test_py37
+          filters:
+            branches:
+              only:
+                - master
