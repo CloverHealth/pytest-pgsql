@@ -353,6 +353,21 @@ For more information:
 * PostgreSQL documentation: `Resource Consumption <https://www.postgresql.org/docs/current/static/runtime-config-resource.html>`_
 * PostgreSQL wiki: `Tuning your PostgreSQL Server <https://wiki.postgresql.org/wiki/Tuning_Your_PostgreSQL_Server>`_
 
+Test Database Connection
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+By default, ``pytest_pgsql`` will use the database connection ``postgres@127.0.0.1:5432/test``. The user, host, port,
+and database may each be overridden using the following commandline options:
+
+``--pg-user``
+    Override the user of the database connection. Defaults to ``postgres``.
+``--pg-host``
+    Override the host of the database connection. Defaults to ``127.0.0.1``.
+``--pg-port``
+    Override the port of the database connection. Defaults to ``5432``.
+``-pg-database``
+    Override the database of the database connection. Defaults to ``test``.
+
 .. _tips:
 
 Tips

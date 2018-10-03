@@ -21,6 +21,26 @@ def pytest_addoption(parser):
              '`pytest_pgsql` defaults to 32. Adjusting this up or down can '
              'help performance; see the Postgres documentation for more details.')
 
+    parser.addoption(
+        '--pg-port', type=int, default=None,
+        help='Set the port of the testing database connection.',
+    )
+
+    parser.addoption(
+        '--pg-host', type=str, default='127.0.0.1',
+        help='Set the host of the testing database connection.',
+    )
+
+    parser.addoption(
+        '--pg-user', type=str, default='postgres',
+        help='Set the user of the testing database connection.',
+    )
+
+    parser.addoption(
+        '--pg-database', type=str, default='test',
+        help='Set the database of the testing database connection.',
+    )
+
 
 @pytest.fixture(scope='session')
 def database_uri(request):
@@ -48,15 +68,19 @@ def database_uri(request):
                       + work_mem_setting +
                       '-c checkpoint_timeout=30min '
                       '-c bgwriter_delay=10000ms') as pgdb:
-        yield pgdb.url()
+
+        yield pgdb.url(
+            host=request.config.getoption('--pg-host'),
+            user=request.config.getoption('--pg-user'),
+            database=request.config.getoption('--pg-database'),
+            port=request.config.getoption('--pg-port') or pgdb.settings['port'],
+        )
 
 
 #: A SQLAlchemy engine shared by the transacted and non-transacted database fixtures.
 #:
 #: .. seealso:: `pytest_pgsql.ext.create_engine_fixture`
-# pylint: disable=invalid-name
-pg_engine = ext.create_engine_fixture('pg_engine', scope='session')
-# pylint: enable=invalid-name
+pg_engine = ext.create_engine_fixture('pg_engine', scope='session')  # pylint: disable=invalid-name
 
 
 @pytest.fixture(scope='session')
