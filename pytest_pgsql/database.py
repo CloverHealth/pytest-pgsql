@@ -301,7 +301,9 @@ class PostgreSQLTestDBBase(metaclass=abc.ABCMeta):
         """.format(table_query=TABLE_SNAPSHOT_QUERY))
 
         orig_tables = self.get_table('pytest_pgsql.original_tables')
+        # pylint: disable=no-value-for-parameter
         self._conn.execute(orig_tables.insert().values(self._restore_state['tables']))
+        # pylint: enable=no-value-for-parameter
 
         self._undo_table_renames()
         self._clean_up_schemas()
