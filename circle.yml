@@ -43,3 +43,10 @@ test:
   override:
     - make validate
     - make test
+
+workflows:
+  version: 2
+  checks_and_deploy:
+    jobs:
+      - lint
+      - test
