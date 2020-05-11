@@ -1,22 +1,45 @@
-machine:
-  python:
-    version: 3.6.2
+version: 2
+aliases:
+  - &docker_image circleci/python:3.6.2-stretch
+  - &dependencies
+    name: Make virtualenv and install dependencies
+    command: |
+      python3 -m venv ~/venv
+      echo ". ~/venv/bin/activate" >> $BASH_ENV
+      source $BASH_ENV
+      make dependencies
+      pyenv local 3.6.2 3.5.3 3.4.4
 
-dependencies:
-  override:
-    - make dependencies
-    - pyenv local 3.6.2 3.5.3 3.4.4
+
+jobs:
+  lint:
+    docker:
+      - image: *docker_image
+    steps:
+      - checkout
+      - run:
+          <<: *dependencies
+      - run: make validate
+  test:
+    docker:
+      - image: *docker_image
+    environment:
+      TEST_REPORTS: /tmp/test-reports
+    steps:
+      - checkout
+      - run:
+          name: Install postgres
+          command: |
+            sudo apt-get update && sudo apt install postgresql postgresql-contrib
+      - run:
+          <<: *dependencies
+      - run: make test
+      - store_test_results:
+          path: /tmp/test-reports
+      - store_artifacts:
+          path: /tmp/test-reports
 
 test:
   override:
     - make validate
     - make test
-
-deployment:
-  production:
-    branch: master
-    owner: CloverHealth
-    commands:
-      - pip3 install -r deploy_requirements.txt
-      - python3 deploy.py prod
-
