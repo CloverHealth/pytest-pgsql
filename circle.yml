@@ -43,6 +43,5 @@ workflows:
   version: 2
   checks_and_deploy:
     jobs:
-      - temple_check
       - lint
       - test
