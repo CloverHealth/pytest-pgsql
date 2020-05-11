@@ -4,8 +4,6 @@ import contextlib
 
 import pytest
 
-from pytest_pgsql import plugin
-
 
 @contextlib.contextmanager
 def check_teardown(fixture, execute):
