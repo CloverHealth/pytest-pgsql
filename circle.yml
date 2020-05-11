@@ -8,7 +8,6 @@ aliases:
       echo ". ~/venv/bin/activate" >> $BASH_ENV
       source $BASH_ENV
       make dependencies
-      pyenv local 3.6.2 3.5.3 3.4.4
 
 
 jobs:
@@ -33,16 +32,12 @@ jobs:
             sudo apt-get update && sudo apt install postgresql postgresql-contrib
       - run:
           <<: *dependencies
-      - run: make test
+      - run: make test_single_version
       - store_test_results:
           path: /tmp/test-reports
       - store_artifacts:
           path: /tmp/test-reports
 
-test:
-  override:
-    - make validate
-    - make test
 
 workflows:
   version: 2
