@@ -38,6 +38,15 @@ jobs:
       - store_artifacts:
           path: /tmp/test-reports
 
+  deploy:
+    docker:
+      - image: *docker_image
+    steps:
+      - checkout
+      - run:
+          <<: *dependencies
+      - run: pip install -q -r deploy_requirements.txt
+      - run: python3 deploy.py
 
 workflows:
   version: 2
@@ -45,3 +54,11 @@ workflows:
     jobs:
       - lint
       - test
+      - deploy:
+          requires:
+            - lint
+            - test
+          filters:
+            branches:
+              only:
+                - master
