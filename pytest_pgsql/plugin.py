@@ -25,7 +25,7 @@ def pytest_addoption(parser):
         '--pg-conf-opt',
         action='append',
         help='Set postgres config options for the test database. '
-             'These are the options that are found in th postgres.conf file'
+             'These are the options that are found in the postgres.conf file'
              'Example: "--pg-conf-opt="track_commit_timestamp=True""')
 
 
