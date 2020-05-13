@@ -1,6 +1,13 @@
 CHANGES
 =======
 
+1.1.2
+-----
+
+* adding deploy key and removing twine register step (#17)
+* missing an arg for the deploy script (#16)
+* Add postgresql.conf options (#15)
+
 1.1.1
 -----
 
