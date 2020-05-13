@@ -135,6 +135,10 @@ test:
 	tox ${TOX_POSARGS}
 	coverage report
 
+.PHONY: test_single_version
+test_single_version:
+	coverage run -a -m pytest --pg-conf-opt="track_commit_timestamp=True" --pg-extensions=btree_gin,,btree_gist pytest_pgsql/tests
+
 
 # Run any services for local development. For example, docker databases, CSS compilation watching, etc
 .PHONY: run

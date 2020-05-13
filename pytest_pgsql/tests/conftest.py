@@ -4,8 +4,6 @@ import contextlib
 
 import pytest
 
-from pytest_pgsql import plugin
-
 
 @contextlib.contextmanager
 def check_teardown(fixture, execute):
@@ -35,10 +33,10 @@ def clean_pgdb(postgresql_db):  # pragma: no cover
 
 
 @pytest.fixture(params=['non-transacted', 'transacted'])
-def clean_db(database_uri, request):
+def clean_db(database_uri, transacted_postgresql_db, postgresql_db, request):
     """Generic database - run a test with both the transacted and non-transacted
     databases."""
     if request.param == 'transacted':
-        yield from plugin.transacted_postgresql_db(database_uri, request)
+        yield transacted_postgresql_db
     else:
-        yield from plugin.postgresql_db(database_uri, request)
+        yield postgresql_db
