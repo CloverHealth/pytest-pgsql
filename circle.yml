@@ -46,7 +46,7 @@ jobs:
       - run:
           <<: *dependencies
       - run: pip install -q -r deploy_requirements.txt
-      - run: python3 deploy.py
+      - run: python3 deploy.py prod
 
 workflows:
   version: 2
