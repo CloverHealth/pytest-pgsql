@@ -46,6 +46,9 @@ jobs:
       - run:
           <<: *dependencies
       - run: pip install -q -r deploy_requirements.txt
+      - add_ssh_keys:
+          fingerprints:
+            - "f9:ef:5e:40:d5:ed:e3:86:a1:18:3e:09:85:93:ef:3a" # CAN I DO THIS?? prob not
       - run: python3 deploy.py prod
 
 workflows:
