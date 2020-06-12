@@ -1,6 +1,6 @@
 version: 2
 aliases:
-  - &docker_image circleci/python:3.6.2-stretch
+  - &docker_image circleci/python:3.8
   - &dependencies
     name: Make virtualenv and install dependencies
     command: |

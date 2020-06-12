@@ -63,12 +63,14 @@ endif
 	#
 	# If you don't have these installed yet it's going to take a long time, but
 	# you'll only need to do it once.
+	pyenv install -s 3.8.2
+	pyenv install -s 3.7.7
 	pyenv install -s 3.6.2
 	pyenv install -s 3.5.2
 	pyenv install -s 3.4.4
 
 	# Set up the environments for Tox
-	pyenv local 3.6.2 3.5.2 3.4.4
+	pyenv local 3.8.2, 3.7.7, 3.6.2 3.5.2 3.4.4
 
 
 # Deactivates pyenv and removes it from auto-using the virtualenv
