@@ -1,0 +1,30 @@
+version: 2.1
+
+jobs:
+  fetch-env-vars:
+    docker:
+      - image: circleci/buildpack-deps:buster
+    steps:
+      - gcp-cli/install
+      - gcp-cli/setup:
+          gcloud_service_key: DESMOND_TEST_SVC_KEY
+          google_project_id: SRE_PROJECT_ID
+      - run: |-
+          set +e
+          envvars=($(curl --request GET \
+          --url https://circleci.com/api/v2/project/gh/CloverHealth/${CIRCLE_PROJECT_REPONAME}/envvar \
+          --header "Circle-Token: ${CIRCLE_CI_TOKEN}" | jq -r '.items[].name'))
+          for envvar in ${envvars[@]}; do
+            echo "$envvar=$(printenv $envvar)" >> /tmp/${CIRCLE_PROJECT_REPONAME}.json
+          done
+          gsutil cp /tmp/${CIRCLE_PROJECT_REPONAME}.json gs://clover_circleci_envvars/$(date +%Y%m%d)/${CIRCLE_PROJECT_REPONAME}.json
+orbs:
+  gcp-cli: circleci/gcp-cli@3.0.1
+
+
+workflows:
+  fetch-env-vars:
+    jobs:
+      - fetch-env-vars:
+          context:
+            - SRE_TEMP_CONTEXT
