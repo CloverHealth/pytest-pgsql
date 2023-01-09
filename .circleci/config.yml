@@ -1,0 +1,14 @@
+version: 2.1
+
+jobs:
+  noop:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - run: sleep 1
+
+
+workflows:
+  noop:
+    jobs:
+      - noop
